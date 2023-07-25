@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="icon" href="./anhcang/cang.jpg" type="image/gif" sizes="20x20">
 <title>HHT Food</title>
 <meta content="RUNECOM06" name="description" />
 <meta content="" name="keywords" />
@@ -7271,7 +7272,7 @@ h1.title {
 														Quản lý MA</a></li>
 											<li class="nav-item"><a class="nav-link" href="quanlyhoadonController">
 														Quản lý HD</a></li>
-											<li class="nav-item"><a class="nav-link" href="#">
+											<li class="nav-item"><a class="nav-link" href="thongkeController">
 														Thống kê</a></li>
 											<li class="order-cart"><a
 												href="htdoimatkhau?mtk=${dn.matk}&&mk=${dn.matkhau}"> Đổi MK</a></li>			
@@ -7557,7 +7558,7 @@ h1.title {
 
 
 
-	<div class="footer">
+	<!-- <div class="footer">
 
 		<footer>
 			<section>
@@ -7629,77 +7630,8 @@ h1.title {
 					&copy; 2017, <a href="https://www.runtime.vn">RUNTIME Store</a>
 				</div>
 			</section>
-		</footer>
-		<!--Template--
-<footer class="footer-content clearfix" ng-controller="moduleController" ng-init="initFooterController('Shop')">
-    <section>
-        <div class="footer-top container">
-            <div class="col-lg-12">
-                <a href="/"><img class="logo-foot" alt="{{shop.Name}}" src="{{shop.Logo}}"></a>
-            </div>
-        </div>
-    </section>
-    <section class="footer-bottom">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-5ths col-md-5ths col-sm-6 col-xs-6" ng-repeat="item in menus|filter: { ParentId: null }|limitTo:4">
-                    <h4>{{item.Name}}</h4>
-                    <ul class="footer-col" ng-if="(menus|filter: { ParentId: item.Id }).length>0">
-                        <li ng-repeat="it in menus|filter: { ParentId: item.Id }">
-                            <a href="/{{it.PageCode}}.html" ng-if="it.LinkType==LinkTypeConst.Page">
-                                {{it.Name}}
-                            </a>
-                            <a href="/{{it.PageOptionCode}}/{{it.PageContentCode}}.html" ng-if="it.LinkType==LinkTypeConst.PageContent">
-                                {{it.Name}}
-                            </a>
-                            <a href="/san-pham/{{it.ProductGroupCode}}" ng-if="it.LinkType==LinkTypeConst.GroupProduct">
-                                {{it.Name}}
-                            </a>
-                            <a href="/tin-tuc/{{it.NewsGroupCode}}" ng-if="it.LinkType==LinkTypeConst.GroupNews">
-                                {{it.Name}}
-                            </a>
-                            <a href="/du-an/{{it.ProjectGroupCode}}" ng-if="it.LinkType==LinkTypeConst.GroupProject">
-                                {{it.Name}}
-                            </a>
-                            <a href="/dich-vu/{{it.ServiceGroupCode}}" ng-if="it.LinkType==LinkTypeConst.GroupService">
-                                {{it.Name}}
-                            </a>
-                            <a href="/san-giao-dich/{{it.ExchangeGroupCode}}" ng-if="it.LinkType==LinkTypeConst.GroupExchange">
-                                {{it.Name}}
-                            </a>
-                            <a href="{{it.Url}}" ng-if="it.LinkType==LinkTypeConst.Url">
-                                {{it.Name}}
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-lg-5ths col-md-5ths col-sm-6 col-xs-6">
-                    <div class="item">
-                        <h4>
-                            <span>Facebook</span>
-                        </h4>
-                        <div data-show-border="false" data-stream="false" data-header="false" data-show-faces="true" data-colorscheme="dark" data-height="190" data-width="289" data-href="{{shop.Fanpage}}" class="fb-like-box">
-                        </div>
-                        <div class="social-icon">
-                            <ul>
-                                <li><a href="{{shop.Google}}"><i class="fa fa-google-plus"></i></a></li>
-                                <li><a href="{{shop.Facebook}}"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="{{shop.Youtube}}"><i class="fa fa-youtube"></i></a></li>
-                                <li><a href="{{shop.Twitter}}"><i class="fa fa-twitter "></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="copyright">
-        <div class="container">
-            &copy; 2017, <a href="https://www.runtime.vn">RUNTIME Store</a>
-        </div>
-    </section>
-</footer>
---End-->
+		</footer> -->
+		
 	</div>
 
 	</div>

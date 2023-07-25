@@ -64,30 +64,25 @@ public class hoadonthanhtoandao {
 		return 0;
 	}
 
-	public String KHmuanhieunhat() {
-		try {
-			KetNoi kn = new KetNoi();
-			kn.KetNoi();
-			String sql = "select viewhoadonthanhtoan.matk, tendn, sum(soluongmua)\r\n"
-					+ "from viewhoadonthanhtoan join taikhoan\r\n" + "on viewhoadonthanhtoan.matk = taikhoan.matk\r\n"
-					+ "where damua = 1\r\n" + "group by viewhoadonthanhtoan.matk, tendn\r\n"
-					+ "having sum(soluongmua) >= all (\r\n"
-					+ "									select sum(soluongmua)\r\n"
-					+ "									from viewhoadonthanhtoan join taikhoan\r\n"
-					+ "									on viewhoadonthanhtoan.matk = taikhoan.matk\r\n"
-					+ "									where damua = 1\r\n"
-					+ "									group by viewhoadonthanhtoan.matk, tendn\r\n" + "\r\n" + ")";
-
-			PreparedStatement cmd = kn.cn.prepareStatement(sql);
-			ResultSet rs = cmd.executeQuery();
-			while (rs.next()) {
-				return rs.getString(2);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
+	/*
+	 * public String KHmuanhieunhat() { try { KetNoi kn = new KetNoi(); kn.KetNoi();
+	 * String sql = "select viewhoadonthanhtoan.matk, tendn, sum(soluongmua)\r\n" +
+	 * "from viewhoadonthanhtoan join taikhoan\r\n" +
+	 * "on viewhoadonthanhtoan.matk = taikhoan.matk\r\n" + "where damua = 1\r\n" +
+	 * "group by viewhoadonthanhtoan.matk, tendn\r\n" +
+	 * "having sum(soluongmua) >= all (\r\n" +
+	 * "									select sum(soluongmua)\r\n" +
+	 * "									from viewhoadonthanhtoan join taikhoan\r\n"
+	 * +
+	 * "									on viewhoadonthanhtoan.matk = taikhoan.matk\r\n"
+	 * + "									where damua = 1\r\n" +
+	 * "									group by viewhoadonthanhtoan.matk, tendn\r\n"
+	 * + "\r\n" + ")";
+	 * 
+	 * PreparedStatement cmd = kn.cn.prepareStatement(sql); ResultSet rs =
+	 * cmd.executeQuery(); while (rs.next()) { return rs.getString(2); } } catch
+	 * (Exception e) { e.printStackTrace(); } return null; }
+	 */
 
 	public long Slhoadonbanduoc() {
 		try {
@@ -166,41 +161,40 @@ public class hoadonthanhtoandao {
 			return null;
 		}
 	}
-	
+
 	public int getTotalHD() {
 		try {
 			KetNoi kn = new KetNoi();
 			kn.KetNoi();
-			
-			String sql="select count(*) from viewhoadonthanhtoan";
+
+			String sql = "select count(*) from viewhoadonthanhtoan";
 			PreparedStatement cmd = kn.cn.prepareStatement(sql);
-    		ResultSet rs = cmd.executeQuery();
-    		while(rs.next()) {
-    			return rs.getInt(1);
-    		}
+			ResultSet rs = cmd.executeQuery();
+			while (rs.next()) {
+				return rs.getInt(1);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return 0;
 	}
-	
-	public ArrayList<hoadonthanhtoanbean> pagingHD(int index){
+
+	public ArrayList<hoadonthanhtoanbean> pagingHD(int index) {
 		ArrayList<hoadonthanhtoanbean> list = new ArrayList<hoadonthanhtoanbean>();
 		try {
 			KetNoi kn = new KetNoi();
 			kn.KetNoi();
-			
-			String sql="select * from viewhoadonthanhtoan\r\n"
-					+ "order by mahd desc\r\n"
+
+			String sql = "select * from viewhoadonthanhtoan\r\n" + "order by mahd desc\r\n"
 					+ "offset ? rows fetch next 10 rows only";
-			
+
 			PreparedStatement cmd = null;
 			cmd = kn.cn.prepareStatement(sql);
-			cmd.setInt(1, (index-1)*10);
-    		ResultSet rs = cmd.executeQuery();
-    		while(rs.next()) {
-    			long mahd = rs.getLong("mahd");
+			cmd.setInt(1, (index - 1) * 10);
+			ResultSet rs = cmd.executeQuery();
+			while (rs.next()) {
+				long mahd = rs.getLong("mahd");
 				String matk = rs.getString("matk");
 				String tenmonan = rs.getString("tenmonan");
 				long gia = rs.getLong("gia");
@@ -209,17 +203,16 @@ public class hoadonthanhtoandao {
 				boolean damua = rs.getBoolean("damua");
 				Date ngaymua = rs.getDate("ngaymua");
 				list.add(new bean.hoadonthanhtoanbean(matk, tenmonan, gia, soluongmua, thanhtien, mahd, ngaymua));
-    		}
-    		rs.close();
+			}
+			rs.close();
 			kn.cn.close();
 			return list;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return list;
 	}
-	
 
 	public static void main(String[] args) {
 		hoadonthanhtoandao hd = new hoadonthanhtoandao();

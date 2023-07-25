@@ -18,6 +18,7 @@
 		<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <link href="./css/login.css" rel="stylesheet" type="text/css"/>
+        <link rel="icon" href="./anhcang/cang.jpg" type="image/gif" sizes="20x20">
         <title>Đăng Ký</title>
     </head>
      <style>

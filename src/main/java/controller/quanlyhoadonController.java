@@ -47,7 +47,7 @@ public class quanlyhoadonController extends HttpServlet {
 		else {
 			hoadonthanhtoanbean hd = null;
 			ArrayList<hoadonthanhtoanbean> dshdon = hdttbo.HienThiHDALL();
-			ArrayList<hoadonthanhtoanbean> dshd = hdttbo.HienThi(hd.getMahd());
+			/* ArrayList<hoadonthanhtoanbean> dshd = hdttbo.HienThi(hd.getMahd()); */
 			request.setAttribute("dshdon", dshdon);
 
 			String indexPage = request.getParameter("trang");

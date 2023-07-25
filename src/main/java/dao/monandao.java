@@ -13,7 +13,7 @@ public class monandao {
 	public ArrayList<monanbean> getMonan(){
 		ArrayList<monanbean> ds = new ArrayList<monanbean>();
 		try {
-			//B1: ket noi vao csdl QlSach
+			
     		KetNoi kn = new KetNoi();
     		kn.KetNoi();
     		

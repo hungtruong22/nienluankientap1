@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="icon" href="./anhcang/cang.jpg" type="image/gif" sizes="20x20">
 <title>Giỏ hàng</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -34,17 +35,6 @@
 <link rel="stylesheet" type="text/css"
 	href="/assets/100006/fonts/opensans/css/opensans.css">
 
-<script>
-	function calplacementtooltip(e) {
-		left = e.offset().left - $('.product-wrapper').offset().left;
-		if (left < 30)
-			return 'right';
-		right = -e.offset().right + $('.product-wrapper').offset().right;
-		if (right < 30)
-			return 'left';
-		return 'left';
-	}
-</script>
 <script data-target=".products-resize" data-parent=".product-wrapper"
 	data-img-box=".image" src="/assets/100006/js/fixheightproduct.js"></script>
 <script src="/Scripts/common/common.js" type="text/javascript"></script>
@@ -75,44 +65,44 @@
 </head>
 <style>
 .top-link ul li a {
-    color: #fff;
-    display: block;
-    padding: 7px 10px;
-    font-size: 12px;
-    float: left;
+	color: #fff;
+	display: block;
+	padding: 7px 10px;
+	font-size: 12px;
+	float: left;
 }
 
-.top-link ul{
+.top-link ul {
 	display: block;
 }
 
-.nav-link:hover{
+.nav-link:hover {
 	background: #eee;
 	color: #d74b33;
 }
 
-.top-link ul li a:hover{
+.top-link ul li a:hover {
 	background: #eee;
 	color: #d74b33;
 }
 
 .navbar-nav .nav-link {
-    padding-right: 10px;
-    padding-left: 0;
+	padding-right: 10px;
+	padding-left: 0;
 }
 
-.bg-head{
+.bg-head {
 	background: #d74b33 !important;
 	color: white;
 }
 
-.td-light{
+.td-light {
 	background: #343a40;
 	color: white;
 	z-index: 6;
 }
 
-.link-hov{
+.link-hov {
 	font-weight: 500;
 }
 
@@ -128,12 +118,12 @@
 	background-size: cover;
 }
 
-.flex-nav{
+.flex-nav {
 	display: flex;
 	justify-content: space-between;
 }
 
-.but-change{
+.but-change {
 	-webkit-appearance: button;
 	margin: 6px 0;
 	padding: 0 10px;
@@ -143,9 +133,9 @@
 	transition: 0.4s;
 }
 
-.but-change:hover{
+.but-change:hover {
 	background: #d74b33;
-	color: white; 
+	color: white;
 }
 </style>
 <body>
@@ -170,30 +160,30 @@
 												<li class="order-cart"><a href="htgio"><i
 														class="fa fa-shopping-cart"></i> Đặt món</a></li>
 												<li class="order-cart"><a
-												href="htdoimatkhau?mtk=${dn.matk}&&mk=${dn.matkhau}">
-												 Đổi MK</a></li>
+													href="htdoimatkhau?mtk=${dn.matk}&&mk=${dn.matkhau}">
+														Đổi MK</a></li>
 											</c:if>
-											
+
 											<c:if test="${dn.laquanly == true}">
-											<li class="nav-item"><a class="nav-link" href="#">Tài
+												<li class="nav-item"><a class="nav-link" href="#">Tài
 														khoản Quản lý</a></li>
-											<li class="order-cart"><a href="htgio"><i
+												<li class="order-cart"><a href="htgio"><i
 														class="fa fa-shopping-cart"></i> Đặt món</a></li>
-											<li class="nav-item"><a class="nav-link" href="quanlytaikhoanController">
-														Quản lý TK</a></li>
-											<li class="nav-item"><a class="nav-link" href="quanlyloaiController">
-													Quản lý Loại</a></li>
-											<li class="nav-item"><a class="nav-link" href="quanlymonanController">
-														Quản lý MA</a></li>
-											<li class="nav-item"><a class="nav-link" href="quanlyhoadonController">
-														Quản lý HD</a></li>
-											<li class="nav-item"><a class="nav-link" href="#">
-														Thống kê</a></li>
-											<li class="order-cart"><a
-												href="htdoimatkhau?mtk=${dn.matk}&&mk=${dn.matkhau}">
-												 Đổi MK</a></li>		
+												<li class="nav-item"><a class="nav-link"
+													href="quanlytaikhoanController"> Quản lý TK</a></li>
+												<li class="nav-item"><a class="nav-link"
+													href="quanlyloaiController"> Quản lý Loại</a></li>
+												<li class="nav-item"><a class="nav-link"
+													href="quanlymonanController"> Quản lý MA</a></li>
+												<li class="nav-item"><a class="nav-link"
+													href="quanlyhoadonController"> Quản lý HD</a></li>
+												<li class="nav-item"><a class="nav-link"
+													href="thongkeController"> Thống kê</a></li>
+												<li class="order-cart"><a
+													href="htdoimatkhau?mtk=${dn.matk}&&mk=${dn.matkhau}">
+														Đổi MK</a></li>
 											</c:if>
-											
+
 
 											<c:if test="${dn != null}">
 												<li class="nav-item"><a class="nav-link" href="#">Hello
@@ -279,16 +269,14 @@
 														<td>${h.getGia()}</td>
 														<td>${h.getSoluong()}</td>
 														<p style="display: none">${demsl = demsl+ h.getSoluong()}</p>
-														<td>
-														<input type="number" min="0"
-															 	name="txt${h.getMamonan()}">
+														<td><input type="number" min="0"
+															name="txt${h.getMamonan()}">
 															<div>
-															<button type="submit" name="butsua"
-																class="but-change" value="${h.getMamonan()}">Cập nhật</button>
-															<button type="submit" name="butxoa"
-																class="but-change" value="${h.getMamonan()}">Xóa</button>
-															</div>
-															</td>
+																<button type="submit" name="butsua" class="but-change"
+																	value="${h.getMamonan()}">Cập nhật</button>
+																<button type="submit" name="butxoa" class="but-change"
+																	value="${h.getMamonan()}">Xóa</button>
+															</div></td>
 														<td>${h.getThanhtien()}</td>
 
 													</tr>
@@ -329,8 +317,7 @@
 										</c:if>
 										<c:if test="${demsl >= 3 && demsl <= 10}">
 											<li class="d-flex justify-content-between py-3 border-bottom"><strong
-												class="text-muted">Giá Khuyến mãi</strong> 
-												<strong>${gantt = tongtien*(20/100)}
+												class="text-muted">Giá Khuyến mãi</strong> <strong>${gantt = tongtien*(20/100)}
 													vnđ</strong></li>
 										</c:if>
 										<c:if test="${demsl > 10}">
@@ -343,8 +330,10 @@
 											class="text-muted">Tổng thanh toán</strong>
 											<h5 class="font-weight-bold">${tongtien-gantt}vnđ</h5></li>
 									</ul>
-									<a href="datmonanController?tongtien=${tongtien}&thanhtoan=${tongtien-gantt}&giakhuyenmai=${gantt}&nhanvien=${dn.tendn}"
-										class="btn btn-dark rounded-pill py-2 btn-block link-hov">Đặt món</a>
+									<a
+										href="datmonanController?tongtien=${tongtien}&thanhtoan=${tongtien-gantt}&giakhuyenmai=${gantt}&nhanvien=${dn.tendn}"
+										class="btn btn-dark rounded-pill py-2 btn-block link-hov">Đặt
+										món</a>
 								</div>
 							</div>
 						</div>
@@ -353,17 +342,17 @@
 				</div>
 			</div>
 		</div>
-		</div>
-		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-			integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-			crossorigin="anonymous"></script>
-		<script
-			src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-			integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-			crossorigin="anonymous"></script>
-		<script
-			src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-			integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-			crossorigin="anonymous"></script>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+		crossorigin="anonymous"></script>
 </body>
 </html>

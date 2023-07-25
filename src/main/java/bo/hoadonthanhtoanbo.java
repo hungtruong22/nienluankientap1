@@ -13,9 +13,9 @@ public class hoadonthanhtoanbo {
 	   public ArrayList<hoadonthanhtoanbean> HienThi(long hdid){
 		   return hdttdao.HienThi(hdid);
 	   }
-	   public String KHmuanhieunhat() {
-		   return hdttdao.KHmuanhieunhat();
-	   }
+		/*
+		 * public String KHmuanhieunhat() { return hdttdao.KHmuanhieunhat(); }
+		 */
 	   
 	   public long Tongtienthongke() {
 		   return hdttdao.Tongtienthongke();

@@ -6,6 +6,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="./anhcang/cang.jpg" type="image/gif" sizes="20x20">
 <title>Quản Lý Loại</title>
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
@@ -270,7 +271,7 @@ img {
 												href="quanlymonanController"> Quản lý MA</a></li>
 											<li class="nav-item"><a class="nav-link" href="quanlyhoadonController">
 													Quản lý HD</a></li>
-											<li class="nav-item"><a class="nav-link" href="#">
+											<li class="nav-item"><a class="nav-link" href="thongkeController">
 													Thống kê</a></li>
 											<li class="order-cart"><a
 												href="htdoimatkhau?mtk=${dn.matk}&&mk=${dn.matkhau}">

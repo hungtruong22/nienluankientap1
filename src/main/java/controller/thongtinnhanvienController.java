@@ -1,27 +1,28 @@
 package controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.taikhoanbean;
+import bean.nhanvienbean;
 import bo.nhanvienbo;
-import bo.taikhoanbo;
 
 /**
- * Servlet implementation class xoataikhoanController
+ * Servlet implementation class thongtinnhanvienController
  */
-@WebServlet("/xoataikhoanController")
-public class xoataikhoanController extends HttpServlet {
+@WebServlet("/thongtinnhanvienController")
+public class thongtinnhanvienController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public xoataikhoanController() {
+    public thongtinnhanvienController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,14 +31,15 @@ public class xoataikhoanController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		taikhoanbo tkbo = new taikhoanbo();
 		nhanvienbo nvbo = new nhanvienbo();
-		String matk = request.getParameter("mataikhoan");
-		long tkid = Long.parseLong(matk);
-		nvbo.xoaNV(tkid);
-		tkbo.xoaTK(matk);
-		
-		response.sendRedirect("quanlytaikhoanController");
+		long matk = Long.parseLong(request.getParameter("matk"));
+		String chucvu = request.getParameter("chucvu");
+		nhanvienbean nv = nvbo.getNVByTKID(matk);
+		request.setAttribute("matk", matk);
+		request.setAttribute("nv", nv);
+		request.setAttribute("chucvu", chucvu);
+		RequestDispatcher rd = request.getRequestDispatcher("./view/admin/thongtinnhanvien.jsp");
+	       rd.forward(request, response);
 	}
 
 	/**

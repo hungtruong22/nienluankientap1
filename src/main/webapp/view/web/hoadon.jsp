@@ -32,18 +32,6 @@
 
 <link rel="stylesheet" type="text/css"
 	href="/assets/100006/fonts/opensans/css/opensans.css">
-
-<script>
-	function calplacementtooltip(e) {
-		left = e.offset().left - $('.product-wrapper').offset().left;
-		if (left < 30)
-			return 'right';
-		right = -e.offset().right + $('.product-wrapper').offset().right;
-		if (right < 30)
-			return 'left';
-		return 'left';
-	}
-</script>
 <script data-target=".products-resize" data-parent=".product-wrapper"
 	data-img-box=".image" src="/assets/100006/js/fixheightproduct.js"></script>
 <script src="/Scripts/common/common.js" type="text/javascript"></script>
@@ -72,6 +60,7 @@
 	rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="../css/style.css">
 <link rel="stylesheet" href="../css/bill.css">
+<link rel="icon" href="./anhcang/cang.jpg" type="image/gif" sizes="20x20">
 <title>Hóa đơn</title>
 </head>
 <style>
@@ -7361,7 +7350,7 @@ h1.title {
 														Quản lý MA</a></li>
 											<li class="nav-item"><a class="nav-link" href="quanlyhoadonController">
 														Quản lý HD</a></li>
-											<li class="nav-item"><a class="nav-link" href="#">
+											<li class="nav-item"><a class="nav-link" href="thongkeController">
 														Thống kê</a></li>	
 											<li class="order-cart"><a
 												href="htdoimatkhau?mtk=${dn.matk}&&mk=${dn.matkhau}">

@@ -29,6 +29,7 @@
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link href="./css/login.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="../css/style.css">
+<link rel="icon" href="./anhcang/cang.jpg" type="image/gif" sizes="20x20">
 <title>Đổi mật khẩu</title>
 </head>
 <style>
@@ -7478,7 +7479,7 @@ img {
 												href="quanlymonanController"> Quản lý MA</a></li>
 											<li class="nav-item"><a class="nav-link" href="quanlyhoadonController">
 													Quản lý HD</a></li>
-											<li class="nav-item"><a class="nav-link" href="#">
+											<li class="nav-item"><a class="nav-link" href="thongkeController">
 													Thống kê</a></li>
 											<li class="order-cart"><a
 												href="htdoimatkhau?mtk=${dn.matk}&&mk=${dn.matkhau}">

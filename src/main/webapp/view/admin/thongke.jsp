@@ -7,7 +7,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="./anhcang/cang.jpg" type="image/gif" sizes="20x20">
-<title>Quản Lý Tài Khoản</title>
+<title>Thống kê</title>
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
 <link rel="stylesheet"
@@ -44,11 +44,32 @@
 <link href="http://static.runtime.vn/App_Themes/RUN006/responsive.css"
 	rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="../css/style.css">
+>
 
-
+</head>
 <!------ Include the above in your HEAD tag ---------->
 
 <style>
+img {
+	width: 200px;
+	height: 120px;
+}
+
+.mw-600 {
+	max-width: 600px;
+	width: 500px;
+}
+
+.feature {
+	display: flex;
+	justify-content: space-around;
+}
+
+.nav-flex-1 {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
 img {
 	width: 200px;
 	height: 120px;
@@ -232,6 +253,21 @@ img {
 	display: flex;
 	align-items: revert;
 }
+.title-table{
+	background: #28a745;
+	color: white;
+	text-align: center;
+	padding: 10px 20px;
+	font-weight: 500;
+}
+
+.title-heading{
+	font-weight: bold;
+	width: 1110px;
+	margin: 20px auto;
+	margin-bottom: 5px;
+	text-align: center;
+}
 </style>
 <body>
 
@@ -303,160 +339,147 @@ img {
 			</div>
 		</div>
 	</div>
-		<div class="container">
+
+
+
+	<div class="container">
 		<div class="table-wrapper">
-			<div class="table-title bg-table">
+			<div class="table-title">
 				<div class="row">
 					<div class="col-sm-6">
-						<h1 class="heading-food_name">Danh Sách Tài Khoản</h1>
+						<h1 class="title-heading">Thống kê</h2>
 					</div>
+
 				</div>
 			</div>
-			<table class="table table-striped table-hover">
-				<thead>
-					<tr>
-						<th><span class="custom-checkbox"> <input
-								type="checkbox" id="selectAll"> <label for="selectAll"></label>
-						</span></th>
-						<th>Mã TK</th>
-						<th>Tên TK</th>
-						<th>Mật Khẩu</th>
-						<th>Chức Vụ</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach items="${dstrang}" var="s">
-					
-						<tr>
-							<td><span class="custom-checkbox"> <input
-									type="checkbox" id="checkbox1" name="options[]" value="1">
-									<label for="checkbox1"></label>
-							</span></td>
-							<td>${s.matk}</td>
-							<td><a href="thongtinnhanvienController?matk=${s.matk}&&chucvu=${s.lanhanvien == true ? "NhanVien" : "QuanLy"}" title="View Employee">
-                                       ${s.tendn} </a></td>
-							<td>${s.matkhau}</td>
-							<c:if test="${s.lanhanvien == true}">
-								<td>Nhân Viên</td>
-							</c:if>
-							<c:if test="${s.laquanly == true}">
-								<td>Quản Lý</td>
-							</c:if>
+			<form action="thongkeController" method="post">
+				<table class="table table-striped table-hover">
+					<h2 class="title-table">Danh sách bán chạy nhất</h2>
+					<thead>
+						<tr style="background-color: #435d7d; color: #fff">
 
-							<td><a href="suataikhoanController?mataikhoan=${s.matk}"
-								class="edit" data-toggle="modal"> <i class="material-icons"
-									title="Edit">&#xE254;</i></a> <a
-								href="xoataikhoanController?mataikhoan=${s.matk}" class="delete"
-								data-toggle="modal"> <i class="material-icons"
-									title="Delete">&#xE872;</i></a></td>
+							<th>Tên sản phẩm</th>
+							<th>Ảnh</th>
+							<th>Giá</th>
+							<th>Số lượng bán</th>
+
 						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
+					</thead>
+					<tbody>
+						<c:forEach items="${dsbanchay}" var="s">
+							<tr>
+
+								<td class="">${s.tenmonan}</td>
+								<td class=""><img src="${s.anh}"></td>
+								<td class="">${s.gia}</td>
+								<td class="">${s.tongslmua}</td>
+
+
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+
+			</form>
+
+			<form action="thongkeController" method="post">
+				<table class="table table-striped table-hover">
+				<h2 class="title-table">Danh sách bán chậm nhất</h2>
+					<thead>
+						<tr style="background-color: #435d7d; color: #fff">
+
+							<th>Tên sản phẩm</th>
+							<th>Ảnh</th>
+							<th>Giá</th>
+							<th>Số lượng bán</th>
+
+
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach items="${dsbancham}" var="s">
+							<tr>
+
+								<td class="">${s.tenmonan}</td>
+								<td class=""><img src="${s.anh}"></td>
+								<td class="">${s.gia}</td>
+								<td class="">${s.tongslmua}</td>
+
+
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</form>
+
+			<form action="thongkeController" method="post">
+				<table class="table table-striped table-hover">
+					<thead>
+						<tr style="background-color: #435d7d; color: #fff">
+
+
+							<th>Số hóa đơn bán được</th>
+							<th>Tổng tiền thu được</th>
+
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="">${slhoadon}</td>
+							<td class="">${tongtien}vnđ</td>
+
+						</tr>
+					</tbody>
+				</table>
+			</form>
+
+			<!--  form action="thongkeController" method="post" >
+                	<table class="table table-striped table-hover">
+                    <thead>
+                        <tr style="background-color: #435d7d; color: #fff">
+                            
+                            <th>Bán chậm nhất</th>
+                            <th>Ảnh</th>
+                            <th>Số lượng</th>
+                            
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                            <tr>
+                                
+                                <td class="">${suabancham}</td>
+                                <td class=""><img src="${anhsuabanchamnhat}"></td>
+                                <td class="">${soluongbancham}</td>
+                                
+                                
+                            </tr>
+                        
+                    </tbody>
+                </table>
+                </form>-->
+
+
 			<nav class="nav-flex-1" aria-label="Page navigation example">
 				<ul class="pagination">
 					<c:forEach begin="1" end="${endPage}" var="i">
 						<c:if test="${tag==i}">
 							<li class="page-item active"><a class="page-link"
-								href="quanlytaikhoanController?trang=${i}">${i}</a></li>
+								href="quanlysuaController?trang=${i}">${i}</a></li>
 						</c:if>
 						<c:if test="${tag != i}">
 							<li class="page-item"><a class="page-link"
-								href="quanlytaikhoanController?trang=${i}">${i}</a></li>
+								href="quanlysuaController?trang=${i}">${i}</a></li>
 						</c:if>
 					</c:forEach>
 				</ul>
 			</nav>
 		</div>
-		<div class="feature">
-			<!-- Edit Modal HTML -->
-			<div id="addEmployeeModal" class="">
-				<div class="modal-dialog mw-600">
-					<div class="modal-content">
-						<form action="themtaikhoanController" method="post">
-							<div style="background-color: #28a745" class="modal-header">
-								<h4 class="modal-title">Thêm Tài Khoản</h4>
-								<!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> -->
-							</div>
-							<div class="modal-body">
-								<div class="form-group">
-									<label>Tên Tài Khoản</label> <input name="tentaikhoan"
-										type="text" class="form-control" required>
-										<p class="text-danger">${tbloidk}</p>
-								</div>
-								<div class="form-group">
-									<label>Mật Khẩu</label> <input name="matkhautaikhoan"
-										type="text" class="form-control" required>
-								</div>
-								<div class="form-group">
-									<label>Nhập Lại Mật Khẩu</label> <input name="nhaplaimatkhautaikhoan"
-										type="text" class="form-control" required>
-									<p class="text-danger">${tbloi}</p>
-								</div>
-							</div>
-							<div class="modal-footer can-ngang">
-								<input type="button" class="btn btn-default can-nut"
-									data-dismiss="modal" value="Hủy"> <input type="submit"
-									class="btn btn-success can-nut" value="Thêm">
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-
-
-			<!-- Edit Modal HTML -->
-			<div id="editEmployeeModal" class="">
-				<div class="modal-dialog mw-600">
-					<div class="modal-content">
-						<form action="edittaikhoanController" method="post">
-							<div style="background-color: #FFC107" class="modal-header">
-								<h4 class="modal-title">Chỉnh sửa tài khoản</h4>
-								<!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> -->
-							</div>
-							<div class="modal-body">
-								<div class="form-group">
-									<label>Mã Tài Khoản</label> <input name="matk"
-										value="${account.matk}" type="text" class="form-control"
-										readonly required>
-								</div>
-								<div class="form-group">
-									<label>Tên Tài Khoản</label> <input name="tentk"
-										value="${account.tendn}" type="text" class="form-control"
-										required>
-								</div>
-								<div class="form-group">
-									<label>Mật Khẩu</label> <input name="matkhautk"
-										value="${account.matkhau}" type="text" class="form-control"
-										required>
-								</div>
-								<div class="form-group">
-									<label>Chức vụ</label> 
-									<c:if test="${account.lanhanvien == true}">
-										<input name="chucvutk"
-										value="NhanVien" type="text" class="form-control"
-										required>
-									</c:if>
-									
-									<c:if test="${account.laquanly == true}">
-										<input name="chucvutk"
-										value="QuanLy" type="text" class="form-control"
-										required>
-									</c:if>
-								</div>
-							</div>
-							<div class="modal-footer can-ngang">
-								<input type="button" class="btn btn-default can-nut"
-									data-dismiss="modal" value="Hủy"> <input type="submit"
-									class="btn btn-info can-nut" value="Lưu">
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
 
 	</div>
+	<!-- Delete Modal HTML -->
+
 	<script src="js/manager.js" type="text/javascript"></script>
 	<script>
         $(document).ready(function () {
