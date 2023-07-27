@@ -1,10 +1,13 @@
 package bo;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Date;
 
 import bean.monanbean;
 import bean.nhanvienbean;
+import dao.KetNoi;
 import dao.nhanviendao;
 
 public class nhanvienbo {
@@ -32,7 +35,12 @@ public class nhanvienbo {
 		nvdao.xoaNV(tkid);
 	}
 	
+	public int getTotalStaff() {
+		return nvdao.getTotalStaff();
+	}
+	
 	public static void main(String[] args) {
 		nhanvienbo nvbo = new nhanvienbo();
+		
 	}
 }

@@ -16,6 +16,7 @@ import bean.taikhoanbean;
 import bean.thongkebean;
 import bo.hoadonthanhtoanbo;
 import bo.loaibo;
+import bo.nhanvienbo;
 import bo.thongkebo;
 
 /**
@@ -40,6 +41,7 @@ public class thongkeController extends HttpServlet {
 		try {
 			loaibo lbo=new loaibo();
 			thongkebo tkbo = new thongkebo();
+			nhanvienbo nvbo = new nhanvienbo();
 			
 			ArrayList<loaibean> dsloai=lbo.getloai();
 			request.setAttribute("dsloai", dsloai); 
@@ -53,7 +55,7 @@ public class thongkeController extends HttpServlet {
 				hoadonthanhtoanbo hdttbo= new hoadonthanhtoanbo();
 				long tongtien = hdttbo.Tongtienthongke();
 				long slhoadon = hdttbo.Slhoadonbanduoc();
-				
+				long slnhanvien = nvbo.getTotalStaff();
 				ArrayList<thongkebean> dsbanchay = tkbo.dssuabanchay();
 				ArrayList<thongkebean> dsbancham = tkbo.dssuabancham();
 				
@@ -61,7 +63,7 @@ public class thongkeController extends HttpServlet {
 					request.setAttribute("dsbancham", dsbancham);
 					request.setAttribute("tongtien", tongtien);
 					request.setAttribute("slhoadon", slhoadon);
-					
+					request.setAttribute("slnhanvien", slnhanvien);
 				RequestDispatcher rd= request.getRequestDispatcher("./view/admin/thongke.jsp");
 				rd.forward(request, response);
 		}

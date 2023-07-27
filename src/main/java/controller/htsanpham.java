@@ -58,7 +58,7 @@ public class htsanpham extends HttpServlet {
 	     int dem = mabo.getTotalFood();
 			
 			int endPage = dem/6;
-			if(dem % 3 != 0) {
+			if(dem % 6 != 0) {
 				endPage++;
 			}
 			

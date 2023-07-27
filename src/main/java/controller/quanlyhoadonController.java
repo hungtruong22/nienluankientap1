@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -45,30 +46,34 @@ public class quanlyhoadonController extends HttpServlet {
 		if (session.getAttribute("dn") == null)
 			response.sendRedirect("dangnhapController");
 		else {
+			ArrayList<hoadonthanhtoanbean> hdgetngay = hdttbo.getNgay();
+			System.out.println(hdgetngay);
 			hoadonthanhtoanbean hd = null;
+			request.setAttribute("hdgetngay", hdgetngay);
 			ArrayList<hoadonthanhtoanbean> dshdon = hdttbo.HienThiHDALL();
 			/* ArrayList<hoadonthanhtoanbean> dshd = hdttbo.HienThi(hd.getMahd()); */
 			request.setAttribute("dshdon", dshdon);
-
+			Date date = (Date) session.getAttribute("date");
+			System.out.println("ngay no: " + date);
 			String indexPage = request.getParameter("trang");
 
 			if (indexPage == null) {
 				indexPage = "1";
 			}
 			int trang = Integer.parseInt(indexPage);
-			int dem = hdttbo.getTotalHD();
+			int dem = hdttbo.getTotalHDByDate(date);
 
 			int endPage = dem / 6;
-			if (dem % 3 != 0) {
+			if (dem % 6 != 0) {
 				endPage++;
 			}
 
-			ArrayList<hoadonthanhtoanbean> dstrang = hdttbo.pagingHD(trang);
+			ArrayList<hoadonthanhtoanbean> dstrang = hdttbo.pagingHD(trang, date);
 			request.setAttribute("dstrang", dstrang);
-
+			System.out.println("trang: " + trang);
+			System.out.println("danh sach: " + dstrang);
 			request.setAttribute("endPage", endPage);
 			request.setAttribute("tag", trang);
-
 			RequestDispatcher rd = request.getRequestDispatcher("./view/admin/quanlyhoadon.jsp");
 			rd.forward(request, response);
 	}

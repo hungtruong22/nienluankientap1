@@ -7476,7 +7476,7 @@ h1.title {
 								</div>
 							</div>
 							<div class="product-wrapper">
-								<c:forEach items="${dssanpham}" var="s">
+								<c:forEach items="${dstrang}" var="s">
 									<div class="col-md-3 col-sm-3 col-xs-12">
 										<div class="product-item 1000151360 products-resize">
 											<div class="image">

@@ -3,9 +3,10 @@ package dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 
 import bean.hoadonthanhtoanbean;
+import bean.monanbean;
 import bean.taikhoanbean;
 
 public class hoadonthanhtoandao {
@@ -162,13 +163,16 @@ public class hoadonthanhtoandao {
 		}
 	}
 
-	public int getTotalHD() {
+	public int getTotalHDByDate(Date ngaymua) {
 		try {
 			KetNoi kn = new KetNoi();
 			kn.KetNoi();
 
-			String sql = "select count(*) from viewhoadonthanhtoan";
-			PreparedStatement cmd = kn.cn.prepareStatement(sql);
+			String sql = "select count(*) from viewhoadonthanhtoan\r\n"
+					+ "where ngaymua = ?";
+			PreparedStatement cmd = null;
+			cmd = kn.cn.prepareStatement(sql);
+			cmd.setDate(1, (java.sql.Date) ngaymua);
 			ResultSet rs = cmd.executeQuery();
 			while (rs.next()) {
 				return rs.getInt(1);
@@ -180,18 +184,21 @@ public class hoadonthanhtoandao {
 		return 0;
 	}
 
-	public ArrayList<hoadonthanhtoanbean> pagingHD(int index) {
+	public ArrayList<hoadonthanhtoanbean> pagingHD(int index , Date ngay) {
 		ArrayList<hoadonthanhtoanbean> list = new ArrayList<hoadonthanhtoanbean>();
 		try {
 			KetNoi kn = new KetNoi();
 			kn.KetNoi();
 
-			String sql = "select * from viewhoadonthanhtoan\r\n" + "order by mahd desc\r\n"
-					+ "offset ? rows fetch next 10 rows only";
+			String sql = "select * from viewhoadonthanhtoan \r\n"
+					+ "where ngaymua = ?\r\n"
+					+ "order by mahd \r\n"
+					+ "offset ? rows fetch next 6 rows only";
 
 			PreparedStatement cmd = null;
 			cmd = kn.cn.prepareStatement(sql);
-			cmd.setInt(1, (index - 1) * 10);
+			cmd.setDate(1, (java.sql.Date) ngay);
+			cmd.setInt(2, (index - 1) * 6);
 			ResultSet rs = cmd.executeQuery();
 			while (rs.next()) {
 				long mahd = rs.getLong("mahd");
@@ -213,10 +220,73 @@ public class hoadonthanhtoandao {
 
 		return list;
 	}
+	
+	public ArrayList<hoadonthanhtoanbean> getHDByDate(Date ngay){
+		ArrayList<hoadonthanhtoanbean> ds = new ArrayList<hoadonthanhtoanbean>();
+		try {
+			KetNoi kn = new KetNoi();
+			kn.KetNoi();
+
+			String sql = "select * \r\n"
+					+ "from viewhoadonthanhtoan\r\n"
+					+ "where ngaymua = ?";
+
+			PreparedStatement cmd = null;
+			cmd = kn.cn.prepareStatement(sql);
+			cmd.setDate(1, (java.sql.Date) ngay);
+			ResultSet rs = cmd.executeQuery();
+			while (rs.next()) {
+				String matk = rs.getString("matk");
+				String tenmonan = rs.getString("tenmonan");
+				long gia = rs.getLong("gia");
+				long soluongmua = rs.getLong("soluongmua");
+				long thanhtien = rs.getLong("thanhtien");
+				long mahd = rs.getLong("mahd");
+				boolean damua = rs.getBoolean("damua");
+				Date ngaymua = rs.getDate("ngaymua");
+				
+				ds.add(new hoadonthanhtoanbean(matk, tenmonan, gia, soluongmua, thanhtien, mahd, ngaymua));
+			}
+			rs.close();
+			kn.cn.close();
+			return ds;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return ds;
+	}
+	
+	public ArrayList<hoadonthanhtoanbean> getNgay(){
+		ArrayList<hoadonthanhtoanbean> ds = new ArrayList<hoadonthanhtoanbean>();
+		try {
+			KetNoi kn = new KetNoi();
+			kn.KetNoi();
+			
+			String sql = "select distinct top 31 ngaymua\r\n"
+					+ "from viewhoadonthanhtoan\r\n"
+					+ "order by ngaymua desc";
+			PreparedStatement cmd = kn.cn.prepareStatement(sql);
+    		ResultSet rs = cmd.executeQuery();
+    		while(rs.next()) {
+    			// lay ve maloai a tenloai
+				Date ngaymua = rs.getDate("ngaymua");
+				ds.add(new hoadonthanhtoanbean(ngaymua));
+    		}
+    		return ds;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ds;
+	}
 
 	public static void main(String[] args) {
 		hoadonthanhtoandao hd = new hoadonthanhtoandao();
-		ArrayList<hoadonthanhtoanbean> ds = hd.HienThiHDALL();
-		System.out.println(ds);
+		String ngay = "2022-07-13";
+		Date date = Date.valueOf(ngay);
+		ArrayList<hoadonthanhtoanbean> ds = hd.pagingHD(2, date);
+		for(hoadonthanhtoanbean s : ds) {
+			System.out.println(s);
+		}
 	}
 }

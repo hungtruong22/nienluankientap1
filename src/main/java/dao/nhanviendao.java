@@ -131,4 +131,22 @@ public class nhanviendao {
 			e.printStackTrace();
 		}
 	}
+	
+	public int getTotalStaff() {
+		try {
+			KetNoi kn = new KetNoi();
+			kn.KetNoi();
+			
+			String sql="select count(*) from nhanvien";
+			PreparedStatement cmd = kn.cn.prepareStatement(sql);
+    		ResultSet rs = cmd.executeQuery();
+    		while(rs.next()) {
+    			return rs.getInt(1);
+    		}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return 0;
+	}
 }

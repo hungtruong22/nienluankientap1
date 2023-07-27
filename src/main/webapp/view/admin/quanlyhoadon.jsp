@@ -6,7 +6,8 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" href="./anhcang/cang.jpg" type="image/gif" sizes="20x20">
+<link rel="icon" href="./anhcang/cang.jpg" type="image/gif"
+	sizes="20x20">
 <title>Quản Lý Hóa Đơn</title>
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
@@ -233,6 +234,32 @@ img {
 	display: flex;
 	align-items: revert;
 }
+
+.day {
+	position: relative;
+	margin: 20px 10px;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	box-sizing: border-box;
+}
+
+.title-day {
+	margin-right: 8px;
+	font-size: 18px;
+	/* margin-top: 2px; */
+}
+
+.day-choice {
+	overflow-y: scroll;
+}
+
+.button-day:hover{
+	cursor: pointer;
+	transition: 0.4s;
+	background: #343a40;
+	color: white;
+}
 </style>
 <body>
 
@@ -255,8 +282,8 @@ img {
 											<li class="order-cart"><a href="htgio"><i
 													class="fa fa-shopping-cart"></i> Đặt món</a></li>
 											<li class="order-cart"><a
-												href="htdoimatkhau?mtk=${dn.matk}&&mk=${dn.matkhau}"> 
-												Đổi MK</a></li>
+												href="htdoimatkhau?mtk=${dn.matk}&&mk=${dn.matkhau}">
+													Đổi MK</a></li>
 										</c:if>
 
 										<c:if test="${dn.laquanly == true}">
@@ -264,19 +291,19 @@ img {
 													khoản Quản lý</a></li>
 											<li class="order-cart"><a href="htgio"><i
 													class="fa fa-shopping-cart"></i> Đặt món</a></li>
-											<li class="nav-item"><a class="nav-link" href="quanlytaikhoanController">
-													Quản lý TK</a></li>
-											<li class="nav-item"><a class="nav-link" href="quanlyloaiController">
-													Quản lý Loại</a></li>
+											<li class="nav-item"><a class="nav-link"
+												href="quanlytaikhoanController"> Quản lý TK</a></li>
+											<li class="nav-item"><a class="nav-link"
+												href="quanlyloaiController"> Quản lý Loại</a></li>
 											<li class="nav-item"><a class="nav-link"
 												href="quanlymonanController"> Quản lý MA</a></li>
-											<li class="nav-item"><a class="nav-link" href="quanlyhoadonController">
-													Quản lý HD</a></li>
-											<li class="nav-item"><a class="nav-link" href="thongkeController">
-													Thống kê</a></li>
+											<li class="nav-item"><a class="nav-link"
+												href="quanlyhoadonController"> Quản lý HD</a></li>
+											<li class="nav-item"><a class="nav-link"
+												href="thongkeController"> Thống kê</a></li>
 											<li class="order-cart"><a
 												href="htdoimatkhau?mtk=${dn.matk}&&mk=${dn.matkhau}">
-												 Đổi MK</a></li>
+													Đổi MK</a></li>
 										</c:if>
 
 
@@ -304,95 +331,104 @@ img {
 			</div>
 		</div>
 	</div>
-		<div class="container">
-		<div class="table-wrapper">
-			<div class="table-title bg-table">
-				<div class="row">
-					<div class="col-sm-6">
-						<h1 class="heading-food_name">Danh Sách Hóa Đơn</h1>
-					</div>
+	<div class="container">
+		
+			<div class="day">
+				<h4 class="title-day">Chọn ngày:</h4>
+				<form action="hoadontheongayController" method="post">
+				<select class="day-choice" id="date" name="datelist">
+					<c:forEach items="${hdgetngay}" var="n">
+						<option value="${n.ngaymua }">
+						${n.ngaymua}
+						</option>
+					</c:forEach>
+				</select>
+				<input class="button-day" type="submit" value="Xuất">
+				</form>
+		</div>
+		
+	
+	<div class="table-wrapper">
+		<div class="table-title bg-table">
+			<div class="row">
+				<div class="col-sm-6">
+					<h1 class="heading-food_name">Danh Sách Hóa Đơn</h1>
 				</div>
 			</div>
-			<table class="table table-striped table-hover">
-				<thead>
-					<tr>
-						<th><span class="custom-checkbox"> <input
-								type="checkbox" id="selectAll"> <label for="selectAll"></label>
-						</span></th>
-						<th>Mã HD</th>
-						<th>Tên MA</th>
-						<th>Giá</th>
-						<th>Số lượng mua</th>
-						<th>Thành tiền</th>
-						<th>Ngày mua</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach items="${dstrang}" var="s">
-						<tr>
-							<td><span class="custom-checkbox"> <input
-									type="checkbox" id="checkbox1" name="options[]" value="1">
-									<label for="checkbox1"></label>
-							</span></td>
-							<td>${s.mahd}</td>
-							<td>${s.tenmonan}</td>
-							<td>${s.gia}</td>
-							<td>${s.soluongmua}</td>
-							<td>${s.thanhtien}</td>
-							<td>${s.ngaymua}</td>
-
-							<%-- <td><a href="sualoaiController?maloai=${s.maloai}"
-								class="edit" data-toggle="modal"> <i class="material-icons"
-									title="Edit">&#xE254;</i></a> <a
-								href="xoaloaiController?maloai=${s.maloai}" class="delete"
-								data-toggle="modal"> <i class="material-icons"
-									title="Delete">&#xE872;</i></a></td> --%>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-			<nav class="nav-flex-1" aria-label="Page navigation example">
-				<ul class="pagination">
-					<c:forEach begin="1" end="${endPage}" var="i">
-						<c:if test="${tag==i}">
-							<li class="page-item active"><a class="page-link"
-								href="quanlymonanController?trang=${i}">${i}</a></li>
-						</c:if>
-						<c:if test="${tag != i}">
-							<li class="page-item"><a class="page-link"
-								href="quanlymonanController?trang=${i}">${i}</a></li>
-						</c:if>
-					</c:forEach>
-				</ul>
-			</nav>
 		</div>
+		<table class="table table-striped table-hover">
+			<thead>
+				<tr>
+					<th><span class="custom-checkbox"> <input
+							type="checkbox" id="selectAll"> <label for="selectAll"></label>
+					</span></th>
+					<th>Mã HD</th>
+					<th>Tên MA</th>
+					<th>Giá</th>
+					<th>Số lượng mua</th>
+					<th>Thành tiền</th>
+					<th>Ngày mua</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${dstrang}" var="s">
+					<tr>
+						<td><span class="custom-checkbox"> <input
+								type="checkbox" id="checkbox1" name="options[]" value="1">
+								<label for="checkbox1"></label>
+						</span></td>
+						<td>${s.mahd}</td>
+						<td>${s.tenmonan}</td>
+						<td>${s.gia}</td>
+						<td>${s.soluongmua}</td>
+						<td>${s.thanhtien}</td>
+						<td>${s.ngaymua}</td>
+
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+		<nav class="nav-flex-1" aria-label="Page navigation example">
+			<ul class="pagination">
+				<c:forEach begin="1" end="${endPage}" var="i">
+					<c:if test="${tag==i}">
+						<li class="page-item active"><a class="page-link"
+							href="quanlyhoadonController?trang=${i}">${i}</a></li>
+					</c:if>
+					<c:if test="${tag != i}">
+						<li class="page-item"><a class="page-link"
+							href="quanlyhoadonController?trang=${i}">${i}</a></li>
+					</c:if>
+				</c:forEach>
+			</ul>
+		</nav>
+	</div>
 	</div>
 	<script src="js/manager.js" type="text/javascript"></script>
 	<script>
-        $(document).ready(function () {
-            // Activate tooltip
-            $('[data-toggle="tooltip"]').tooltip();
+		$(document).ready(function() {
+			// Activate tooltip
+			$('[data-toggle="tooltip"]').tooltip();
 
-            // Select/Deselect checkboxes
-            var checkbox = $('table tbody input[type="checkbox"]');
-            $("#selectAll").click(function () {
-                if (this.checked) {
-                    checkbox.each(function () {
-                        this.checked = true;
-                    });
-                } else {
-                    checkbox.each(function () {
-                        this.checked = false;
-                    });
-                }
-            });
-            checkbox.click(function () {
-                if (!this.checked) {
-                    $("#selectAll").prop("checked", false);
-                }
-            });
-        });
-
-        </script>
+			// Select/Deselect checkboxes
+			var checkbox = $('table tbody input[type="checkbox"]');
+			$("#selectAll").click(function() {
+				if (this.checked) {
+					checkbox.each(function() {
+						this.checked = true;
+					});
+				} else {
+					checkbox.each(function() {
+						this.checked = false;
+					});
+				}
+			});
+			checkbox.click(function() {
+				if (!this.checked) {
+					$("#selectAll").prop("checked", false);
+				}
+			});
+		});
+	</script>
 </body>
 </html>
